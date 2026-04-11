@@ -118,7 +118,9 @@ const pickerState = { flavor: null, choc: null, size: null };
 function renderFlavorGrid(container) {
   EP_FLAVORS.forEach(f => {
     const btn = el('button', { class: 'flavor-btn', 'data-flavor': f.label });
-    btn.innerHTML = `<span class="ficon">${f.icon}</span>${f.label}`;
+    const img = el('img', { class: 'fimg', src: IMGS[f.imgKey], alt: f.label });
+    const lbl = document.createTextNode(f.label);
+    btn.append(img, lbl);
     btn.onclick = () => {
       $$('.flavor-btn', container).forEach(b => b.classList.remove('selected'));
       btn.classList.add('selected');

@@ -15,4 +15,17 @@ const IMGS = {
   pistachio_bar:                    'assets/images/pistachio_bar.png',
   pistachio_oh:                     'assets/images/pistachio_oh.png',
   berry_oh:                         'assets/images/berry_oh.png',
+
+  // EP Factory flavor bar images (extracted from PDF)
+  ep_double_chocolate:              'assets/images/ep_double_chocolate.png',
+  ep_protein_peanut:                'assets/images/ep_protein_peanut.png',
+  ep_protein_coco_macadamia:        'assets/images/ep_protein_coco_macadamia.png',
+  ep_protein_almond:                'assets/images/ep_protein_almond.png',
+  ep_crunchy_pistachio:             'assets/images/ep_crunchy_pistachio.png',
+  ep_dark_cocoa_crisp:              'assets/images/ep_dark_cocoa_crisp.png',
+  ep_crunchy_strawberry:            'assets/images/ep_crunchy_strawberry.png',
+  ep_strawberry_matcha:             'assets/images/ep_strawberry_matcha.png',
+  ep_white_cocoa_crisp:             'assets/images/ep_white_cocoa_crisp.png',
+  ep_protein_strawberry:            'assets/images/ep_protein_strawberry.png',
+  ep_peanut_butter:                 'assets/images/ep_peanut_butter.png',
 };

@@ -16,7 +16,7 @@ const SVEIKERIS = [
   {
     imgKey: 'sveik_double_choco',
     alt: 'Sveikeris Double Choco',
-    badges: [{ text: '50g' }, { text: 'Vegan' }, { text: 'No GMO', cls: 'clean' }, { text: 'No Palm Oil', cls: 'clean' }],
+    badges: [{ text: '50g' }, { text: 'Vegan' }, { text: 'No GMO', cls: 'clean' }, { text: 'No Palm Oil', cls: 'clean' }, { text: 'Fiber-Rich', cls: 'fiber' }],
     title: 'Sveikeris Double Choco',
     desc: 'A double chocolate bar with peanut and coconut, naturally sweetened with dates, enrobed in rich chocolate with a delicate crispy crunch.',
     btnLabel: 'Show Ingredients',
@@ -25,7 +25,7 @@ const SVEIKERIS = [
   {
     imgKey: 'sveik_coconut_strawberry',
     alt: 'Sveikeris Coconut Strawberry',
-    badges: [{ text: '50g' }, { text: 'Strawberry', cls: 'red' }, { text: 'Sugar-Free', cls: 'caramel' }, { text: 'No GMO', cls: 'clean' }, { text: 'No Palm Oil', cls: 'clean' }],
+    badges: [{ text: '50g' }, { text: 'Strawberry', cls: 'red' }, { text: 'Sugar-Free', cls: 'caramel' }, { text: 'No GMO', cls: 'clean' }, { text: 'No Palm Oil', cls: 'clean' }, { text: 'Fiber-Rich', cls: 'fiber' }],
     title: 'Sveikeris Coconut Strawberry',
     desc: 'A strawberry and coconut bar with natural date sweetness, enrobed in sugar-free white chocolate with a light crispy texture from rice crunch and freeze-dried berries.',
     btnLabel: 'Show Ingredients',
@@ -43,7 +43,7 @@ const SVEIKERIS = [
   {
     imgKey: 'sveik_dark_cocoa_crisp',
     alt: 'Sveikeris Dark Choco Cocoa Crisp',
-    badges: [{ text: '50g' }, { text: 'Sugar-Free', cls: 'caramel' }, { text: 'No GMO', cls: 'clean' }, { text: 'No Palm Oil', cls: 'clean' }],
+    badges: [{ text: '50g' }, { text: 'Sugar-Free', cls: 'caramel' }, { text: 'No GMO', cls: 'clean' }, { text: 'No Palm Oil', cls: 'clean' }, { text: 'Fiber-Rich', cls: 'fiber' }],
     title: 'Sveikeris Dark Choco Cocoa Crisp',
     desc: 'A crispy cocoa bar with peanut and coconut, naturally sweetened with dates and enrobed in sugar-free dark chocolate.',
     btnLabel: 'Show Ingredients',
@@ -52,7 +52,7 @@ const SVEIKERIS = [
   {
     imgKey: 'sveik_white_cocoa_crisp',
     alt: 'Sveikeris White Choco Cocoa Crisp',
-    badges: [{ text: '50g' }, { text: 'Sugar-Free', cls: 'caramel' }, { text: 'No GMO', cls: 'clean' }, { text: 'No Palm Oil', cls: 'clean' }],
+    badges: [{ text: '50g' }, { text: 'Sugar-Free', cls: 'caramel' }, { text: 'No GMO', cls: 'clean' }, { text: 'No Palm Oil', cls: 'clean' }, { text: 'Fiber-Rich', cls: 'fiber' }],
     title: 'Sveikeris White Choco Cocoa Crisp',
     desc: 'A crispy cocoa bar with peanut and coconut, naturally sweetened with dates and enrobed in sugar-free white chocolate.',
     btnLabel: 'Show Ingredients',
@@ -132,17 +132,17 @@ const CRUNCH_BITES = [
 ];
 
 const EP_FLAVORS = [
-  { label: 'Double Chocolate',      icon: '&#127851;' },
-  { label: 'Protein Peanut',        icon: '&#129372;' },
-  { label: 'Protein Coco Macadamia',icon: '&#129381;' },
-  { label: 'Protein Almond',        icon: '&#127792;' },
-  { label: 'Crunchy Pistachio',     icon: '&#127808;' },
-  { label: 'Dark Cocoa Crisp',      icon: '&#129395;' },
-  { label: 'Crunchy Strawberry',    icon: '&#127827;' },
-  { label: 'Strawberry Matcha',     icon: '&#127861;' },
-  { label: 'White Cocoa Crisp',     icon: '&#129293;' },
-  { label: 'Protein Strawberry',    icon: '&#128170;' },
-  { label: 'Peanut Butter',         icon: '&#129379;' },
+  { label: 'Double Chocolate',       imgKey: 'ep_double_chocolate' },
+  { label: 'Protein Peanut',         imgKey: 'ep_protein_peanut' },
+  { label: 'Protein Coco Macadamia', imgKey: 'ep_protein_coco_macadamia' },
+  { label: 'Protein Almond',         imgKey: 'ep_protein_almond' },
+  { label: 'Crunchy Pistachio',      imgKey: 'ep_crunchy_pistachio' },
+  { label: 'Dark Cocoa Crisp',       imgKey: 'ep_dark_cocoa_crisp' },
+  { label: 'Crunchy Strawberry',     imgKey: 'ep_crunchy_strawberry' },
+  { label: 'Strawberry Matcha',      imgKey: 'ep_strawberry_matcha' },
+  { label: 'White Cocoa Crisp',      imgKey: 'ep_white_cocoa_crisp' },
+  { label: 'Protein Strawberry',     imgKey: 'ep_protein_strawberry' },
+  { label: 'Peanut Butter',          imgKey: 'ep_peanut_butter' },
 ];
 
 const EP_COATINGS = [
