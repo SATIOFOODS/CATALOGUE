@@ -63,16 +63,24 @@ function renderBarCard(product) {
 
   // Panel
   const inner = el('div', { class: 'ing-inner', html: product.ingredients });
+  const ctaBtn = el('a', {
+    class: 'ing-wholesale-cta',
+    href: `https://wa.me/${CONTACT.wa}?text=${encodeURIComponent(`Hi Lukas, I'd like to get wholesale specs for: ${product.alt}`)}`,
+    target: '_blank',
+  }, '\uD83D\uDCCB Get Wholesale Specs for this Bar');
   const panel = el('div', { class: 'ing-panel', id: panelId });
-  panel.append(inner);
+  panel.append(inner, ctaBtn);
   body.append(panel);
 
   card.append(body);
   return card;
 }
 
-// ── Pouch card (bullet list, no toggle) ──────────────────────────────────────
+// ── Pouch card (toggle with bullets + wholesale CTA) ─────────────────────────
 function renderPouchCard(product) {
+  const uid = ++_uid;
+  const panelId = `ing-panel-${uid}`;
+
   const card = el('div', { class: 'card' });
 
   const imgWrap = el('div', { class: 'card-img pouch-photo' });
@@ -90,9 +98,29 @@ function renderPouchCard(product) {
   body.append(el('h3', { html: product.title }));
   body.append(el('p', { class: 'card-desc', html: product.desc }));
 
+  // Toggle button
+  const icon  = el('span', { class: 'ing-icon' }, '+');
+  const label = el('span', { class: 'ing-label' }, 'Show Details');
+  const btn   = el('button', { class: 'ing-toggle', 'data-panel-id': panelId });
+  btn.onclick = () => toggleIng(btn);
+  btn.append(icon, label);
+  body.append(btn);
+
+  // Panel with bullets + CTA
+  const inner = el('div', { class: 'ing-inner' });
   const ul = el('ul', { class: 'card-bullets' });
   product.bullets.forEach(b => ul.append(el('li', {}, b)));
-  body.append(ul);
+  inner.append(ul);
+
+  const ctaBtn = el('a', {
+    class: 'ing-wholesale-cta',
+    href: `https://wa.me/${CONTACT.wa}?text=${encodeURIComponent(`Hi Lukas, I'd like to get wholesale specs for: ${product.alt}`)}`,
+    target: '_blank',
+  }, '\uD83D\uDCCB Get Wholesale Specs for this Bag');
+
+  const panel = el('div', { class: 'ing-panel', id: panelId });
+  panel.append(inner, ctaBtn);
+  body.append(panel);
 
   card.append(body);
   return card;

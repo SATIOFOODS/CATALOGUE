@@ -283,6 +283,7 @@ section:nth-child(even) { background: var(--warm-white); }
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr));
   gap: 1.5rem;
+  align-items: start;
 }
 
 /* Signature bars - 3 centred columns */
@@ -291,6 +292,7 @@ section:nth-child(even) { background: var(--warm-white); }
   grid-template-columns: repeat(3, minmax(0, 320px));
   gap: 1.5rem;
   justify-content: center;
+  align-items: start;
 }
 
 /* Crunch bites - 2 centred columns */
@@ -299,6 +301,7 @@ section:nth-child(even) { background: var(--warm-white); }
   grid-template-columns: repeat(2, minmax(0, 380px));
   gap: 1.5rem;
   justify-content: center;
+  align-items: start;
 }
 
 /* ── 6. CARD COMPONENT ────────────────────────────────────────────────── */
@@ -453,6 +456,26 @@ section:nth-child(even) { background: var(--warm-white); }
   margin-top: 0;
 }
 .ing-panel.open { max-height: 600px; opacity: 1; margin-top: 0.75rem; }
+
+.ing-wholesale-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--dark-choc);
+  background: var(--gold);
+  border-radius: 6px;
+  padding: 0.5em 0.9em;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.ing-wholesale-cta:hover {
+  background: var(--caramel);
+  color: #fff;
+}
 
 .ing-inner {
   padding: 0.85rem;
