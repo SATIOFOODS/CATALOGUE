@@ -1,0 +1,651 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Satio Foods — Main Stylesheet
+   Structure:
+     1. CSS Variables & Reset
+     2. Navigation
+     3. Hero
+     4. Sections & Layout
+     5. Product Grid
+     6. Card Component
+     7. Ingredient Toggle
+     8. EP Factory Picker
+     9. Summary Box & CTAs
+    10. Pricing & Chocolate Guide
+    11. Private Label Callout
+    12. Footer
+    13. Animations
+    14. Responsive / Media Queries
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. VARIABLES & RESET ─────────────────────────────────────────────── */
+:root {
+  --cream:        #FAF7F2;
+  --warm-white:   #FFFEF9;
+  --cocoa:        #3B2314;
+  --dark-choc:    #1C0F07;
+  --caramel:      #C4893A;
+  --gold:         #D4A843;
+  --pistachio:    #7AA15A;
+  --strawberry:   #D94F6A;
+  --text-body:    #3D2B1F;
+  --text-muted:   #7A6255;
+  --border:       rgba(59, 35, 20, 0.12);
+  --shadow:       0 2px 24px rgba(59, 35, 20, 0.08);
+  --shadow-hover: 0 8px 40px rgba(59, 35, 20, 0.16);
+  --radius-card:  16px;
+  --radius-btn:   8px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "DM Sans", sans-serif;
+  background: var(--cream);
+  color: var(--text-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── 2. NAVIGATION ────────────────────────────────────────────────────── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: rgba(250, 247, 242, 0.97);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(1rem, 5vw, 3rem);
+}
+
+.nav-brand {
+  font-family: "Playfair Display", serif;
+  font-weight: 900;
+  font-size: 1.25rem;
+  color: var(--cocoa);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+.nav-brand span { color: var(--caramel); }
+
+.nav-links {
+  display: flex;
+  gap: clamp(0.6rem, 2vw, 1.8rem);
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.nav-links a:hover { color: var(--caramel); }
+
+/* Hamburger */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--cocoa);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── 3. HERO ──────────────────────────────────────────────────────────── */
+.hero {
+  background: var(--cocoa);
+  color: #fff;
+  padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 6vw, 4rem);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 120%, rgba(196,137,58,.28) 0%, transparent 70%);
+}
+.hero-label {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.2rem;
+  position: relative;
+}
+.hero h1 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.4rem, 7vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.2rem;
+  position: relative;
+}
+.hero h1 em { color: var(--gold); font-style: normal; }
+.hero p {
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  color: rgba(255,255,255,0.68);
+  max-width: 540px;
+  margin: 0 auto;
+  position: relative;
+}
+.hero-pills {
+  display: flex;
+  gap: 0.65rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  position: relative;
+}
+.hero-pill {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.85);
+  padding: 0.35em 0.9em;
+  border-radius: 100px;
+}
+
+/* ── 4. SECTIONS & LAYOUT ─────────────────────────────────────────────── */
+section { padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 5vw, 4rem); }
+section:nth-child(even) { background: var(--warm-white); }
+
+.section-header {
+  max-width: 640px;
+  margin: 0 auto clamp(2rem, 5vw, 3.5rem);
+  text-align: center;
+}
+.section-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--caramel);
+  margin-bottom: 0.6rem;
+}
+.section-header h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.7rem, 4vw, 2.8rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--cocoa);
+  margin-bottom: 0.75rem;
+}
+.section-header p {
+  font-size: 0.97rem;
+  color: var(--text-muted);
+  font-weight: 300;
+}
+.section-header::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--caramel);
+  margin: 1.2rem auto 0;
+  border-radius: 2px;
+}
+
+/* ── 5. PRODUCT GRIDS ─────────────────────────────────────────────────── */
+
+/* Sveikeris - auto-fill */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr));
+  gap: 1.5rem;
+}
+
+/* Signature bars - 3 centred columns */
+.product-grid-sig {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 320px));
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+/* Crunch bites - 2 centred columns */
+.product-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 380px));
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+/* ── 6. CARD COMPONENT ────────────────────────────────────────────────── */
+.card {
+  background: #fff;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: box-shadow 0.3s, transform 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+.card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
+}
+
+/* Card image area */
+.card-img {
+  width: 100%;
+  background: #f5f1eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 1.2rem 1.5rem;
+  aspect-ratio: 3 / 2;
+}
+.card-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.card-img.product-photo { aspect-ratio: 4 / 3; padding: 1.5rem 2rem; background: #fff; }
+.card-img.pouch-photo   { aspect-ratio: 1 / 1; padding: 1.2rem;       background: #fff; }
+
+/* Card body */
+.card-body { padding: 1.4rem; flex: 1; display: flex; flex-direction: column; }
+
+.card-meta { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+
+.badge {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--cocoa);
+  color: #fff;
+  padding: 0.2em 0.65em;
+  border-radius: 4px;
+}
+.badge.green    { background: var(--pistachio); }
+.badge.red      { background: var(--strawberry); }
+.badge.caramel  { background: var(--caramel); }
+
+.card h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--cocoa);
+  margin-bottom: 0.5rem;
+  line-height: 1.25;
+}
+.card-desc { font-size: 0.87rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 0.75rem; }
+
+.card-bullets { list-style: none; margin-bottom: 1rem; }
+.card-bullets li {
+  font-size: 0.83rem;
+  color: var(--text-muted);
+  padding: 0.22rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+.card-bullets li::before {
+  content: "\00B7";
+  color: var(--caramel);
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.3;
+  flex-shrink: 0;
+}
+
+/* ── 7. INGREDIENT TOGGLE ─────────────────────────────────────────────── */
+.ing-toggle {
+  background: none;
+  border: none;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--caramel);
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 0.2s;
+  margin-top: auto;
+}
+.ing-toggle:hover { color: var(--cocoa); }
+
+.ing-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  transition: transform 0.25s;
+  flex-shrink: 0;
+}
+.ing-toggle.open .ing-icon { transform: rotate(45deg); }
+
+.ing-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, opacity 0.3s ease, margin-top 0.3s ease;
+  opacity: 0;
+  margin-top: 0;
+}
+.ing-panel.open { max-height: 600px; opacity: 1; margin-top: 0.75rem; }
+
+.ing-inner {
+  padding: 0.85rem;
+  background: var(--cream);
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  border: 1px solid var(--border);
+}
+
+/* ── 8. EP FACTORY DARK SECTION & PICKER ─────────────────────────────── */
+#epfactory { background: var(--cocoa); color: #fff; }
+#epfactory .section-tag { color: var(--gold); }
+#epfactory .section-header h2 { color: #fff; }
+#epfactory .section-header p { color: rgba(255,255,255,0.6); }
+#epfactory .section-header::after { background: var(--gold); }
+
+.picker-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+.picker-box {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-card);
+  padding: 1.5rem;
+}
+.picker-box h4 {
+  font-family: "Playfair Display", serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.flavor-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 0.6rem; }
+
+.flavor-btn {
+  background: rgba(255,255,255,0.06);
+  border: 1.5px solid rgba(255,255,255,0.15);
+  border-radius: 10px;
+  padding: 0.65rem 0.6rem;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+  color: rgba(255,255,255,0.85);
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+.flavor-btn .ficon { font-size: 1.2rem; display: block; margin-bottom: 0.3rem; }
+.flavor-btn:hover   { background: rgba(212,168,67,0.2); border-color: var(--gold); }
+.flavor-btn.selected { background: var(--gold); border-color: var(--gold); color: var(--dark-choc); font-weight: 600; }
+
+.choc-options { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+
+.choc-btn {
+  background: rgba(255,255,255,0.06);
+  border: 1.5px solid rgba(255,255,255,0.15);
+  border-radius: 10px;
+  padding: 0.65rem 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: rgba(255,255,255,0.85);
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.choc-btn .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.choc-btn:hover    { background: rgba(212,168,67,0.15); border-color: var(--gold); }
+.choc-btn.selected { background: rgba(212,168,67,0.25); border-color: var(--gold); color: #fff; }
+
+.size-options { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem; }
+
+.size-btn {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3em 0.9em;
+  border-radius: 6px;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  background: none;
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  transition: all 0.2s;
+}
+.size-btn:hover, .size-btn.selected {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--dark-choc);
+}
+
+/* ── 9. SUMMARY BOX & CTAs ────────────────────────────────────────────── */
+.summary-box {
+  margin-top: 1.5rem;
+  background: var(--gold);
+  color: var(--dark-choc);
+  border-radius: var(--radius-card);
+  padding: 1.4rem 1.6rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+.summary-box.visible { opacity: 1; pointer-events: auto; }
+.summary-icon { font-size: 2.2rem; flex-shrink: 0; }
+.summary-text { flex: 1; }
+.summary-text h4 {
+  font-family: "Playfair Display", serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+.summary-text p { font-size: 0.85rem; opacity: 0.8; margin-bottom: 0.9rem; }
+.summary-cta { display: flex; gap: 0.7rem; flex-wrap: wrap; }
+
+/* Shared CTA button base */
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.55em 1.1em;
+  border-radius: var(--radius-btn);
+  text-decoration: none;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.btn-cta.dark  { background: var(--cocoa); color: #fff; }
+.btn-cta.dark:hover  { background: #5a3520; }
+.btn-cta.green { background: #25D366; color: #fff; }
+.btn-cta.green:hover { background: #1da851; }
+
+/* ── 10. PRICING & CHOCOLATE GUIDE ───────────────────────────────────── */
+.pricing-section { margin-top: 3rem; }
+.pricing-section h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.price-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 1.4rem;
+}
+.price-card h5 {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.9rem;
+}
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.83rem;
+  color: rgba(255,255,255,0.75);
+}
+.price-row:last-child { border-bottom: none; }
+.price-row strong { color: #fff; font-weight: 600; }
+
+.choc-guide { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 3rem; }
+.guide-card { border-radius: var(--radius-card); padding: 1.8rem; border: 1px solid; }
+.guide-card.real     { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.15); }
+.guide-card.compound { background: rgba(212,168,67,0.1);   border-color: rgba(212,168,67,0.3); }
+.guide-card h4 {
+  font-family: "Playfair Display", serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.guide-card.real h4     { color: #fff; }
+.guide-card.compound h4 { color: var(--gold); }
+.guide-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-bottom: 0.55rem;
+  font-size: 0.83rem;
+  color: rgba(255,255,255,0.72);
+}
+.guide-row .bullet {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 0.45em;
+}
+.guide-card.real .bullet     { background: rgba(255,255,255,0.5); }
+.guide-card.compound .bullet { background: var(--gold); }
+
+/* ── 11. PRIVATE LABEL CALLOUT ────────────────────────────────────────── */
+.pvt-label {
+  margin-top: 2.5rem;
+  background: var(--gold);
+  color: var(--dark-choc);
+  border-radius: var(--radius-card);
+  padding: 1.6rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.pvt-label .pvt-icon { font-size: 2.2rem; flex-shrink: 0; }
+.pvt-label-text { flex: 1; }
+.pvt-label-text h4 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+.pvt-label-text p { font-size: 0.87rem; opacity: 0.75; margin-bottom: 0.9rem; }
+.pvt-actions { display: flex; gap: 0.7rem; flex-wrap: wrap; }
+
+/* ── 12. FOOTER ───────────────────────────────────────────────────────── */
+footer {
+  background: var(--dark-choc);
+  color: rgba(255,255,255,0.45);
+  text-align: center;
+  padding: 2rem clamp(1rem, 5vw, 3rem);
+  font-size: 0.82rem;
+}
+footer a { color: var(--gold); text-decoration: none; }
+
+/* ── 13. ANIMATIONS ───────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.card { animation: fadeUp 0.5s ease both; }
+.card:nth-child(1) { animation-delay: 0.05s; }
+.card:nth-child(2) { animation-delay: 0.10s; }
+.card:nth-child(3) { animation-delay: 0.15s; }
+.card:nth-child(4) { animation-delay: 0.20s; }
+.card:nth-child(5) { animation-delay: 0.25s; }
+.card:nth-child(6) { animation-delay: 0.30s; }
+.card:nth-child(7) { animation-delay: 0.35s; }
+
+/* ── 14. RESPONSIVE ───────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .product-grid-sig { grid-template-columns: repeat(2, minmax(0, 320px)); }
+}
+
+@media (max-width: 760px) {
+  .picker-layout { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  /* Mobile nav dropdown */
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    position: fixed;
+    top: 64px; left: 0; right: 0;
+    background: rgba(250,247,242,0.99);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.5rem 0;
+    z-index: 199;
+  }
+  .nav-links.mobile-open { display: flex; }
+  .nav-links li { width: 100%; }
+  .nav-links a  { display: block; padding: 0.75rem 1.5rem; font-size: 0.85rem; }
+  .nav-hamburger { display: flex; }
+}
+
+@media (max-width: 700px) {
+  .product-grid-2 { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .product-grid-sig { grid-template-columns: 1fr; }
+  .choc-guide       { grid-template-columns: 1fr; }
+  .pricing-grid     { grid-template-columns: 1fr; }
+}

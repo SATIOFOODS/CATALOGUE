@@ -1,0 +1,270 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// js/app.js  —  Rendering + all interactivity
+// Depends on: products.js (data) and assets/images.js (IMGS)
+// ─────────────────────────────────────────────────────────────────────────────
+
+const CONTACT = {
+  email: 'lukas@ep-factory.com',
+  wa:    '447926592081',
+};
+
+// ── DOM helpers ───────────────────────────────────────────────────────────────
+const $ = (sel, ctx = document) => ctx.querySelector(sel);
+const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+
+function el(tag, attrs = {}, ...children) {
+  const node = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === 'html') node.innerHTML = v;
+    else if (k === 'class') node.className = v;
+    else node.setAttribute(k, v);
+  }
+  children.forEach(c => c && node.append(typeof c === 'string' ? document.createTextNode(c) : c));
+  return node;
+}
+
+// ── Badge builder ─────────────────────────────────────────────────────────────
+function renderBadges(badges) {
+  return badges.map(b => el('span', { class: `badge ${b.cls || ''}` }, b.text));
+}
+
+// ── Bar card (with ingredient toggle) ────────────────────────────────────────
+let _uid = 0;
+function renderBarCard(product) {
+  const uid = ++_uid;
+  const panelId = `ing-panel-${uid}`;
+
+  const card = el('div', { class: 'card' });
+
+  // Image
+  const imgWrap = el('div', { class: `card-img ${product.imgCls || ''}` });
+  imgWrap.append(el('img', { src: IMGS[product.imgKey], alt: product.alt, loading: 'lazy' }));
+  card.append(imgWrap);
+
+  // Body
+  const body = el('div', { class: 'card-body' });
+
+  const meta = el('div', { class: 'card-meta' });
+  renderBadges(product.badges).forEach(b => meta.append(b));
+  body.append(meta);
+
+  body.append(el('h3', { html: product.title }));
+  body.append(el('p', { class: 'card-desc' }, product.desc));
+
+  // Toggle button
+  const icon  = el('span', { class: 'ing-icon' }, '+');
+  const label = el('span', { class: 'ing-label' }, product.btnLabel);
+  const btn   = el('button', { class: 'ing-toggle', 'data-panel-id': panelId });
+  btn.onclick = () => toggleIng(btn);
+  btn.append(icon, label);
+  body.append(btn);
+
+  // Panel
+  const inner = el('div', { class: 'ing-inner', html: product.ingredients });
+  const panel = el('div', { class: 'ing-panel', id: panelId });
+  panel.append(inner);
+  body.append(panel);
+
+  card.append(body);
+  return card;
+}
+
+// ── Pouch card (bullet list, no toggle) ──────────────────────────────────────
+function renderPouchCard(product) {
+  const card = el('div', { class: 'card' });
+
+  const imgWrap = el('div', { class: 'card-img pouch-photo' });
+  imgWrap.append(el('img', { src: IMGS[product.imgKey], alt: product.alt, loading: 'lazy' }));
+  card.append(imgWrap);
+
+  const body = el('div', { class: 'card-body' });
+
+  const meta = el('div', { class: 'card-meta' });
+  renderBadges(product.badges).forEach(b => meta.append(b));
+  body.append(meta);
+
+  body.append(el('h3', { html: product.title }));
+  body.append(el('p', { class: 'card-desc', html: product.desc }));
+
+  const ul = el('ul', { class: 'card-bullets' });
+  product.bullets.forEach(b => ul.append(el('li', {}, b)));
+  body.append(ul);
+
+  card.append(body);
+  return card;
+}
+
+// ── Ingredient toggle ─────────────────────────────────────────────────────────
+function toggleIng(btn) {
+  const panel = document.getElementById(btn.dataset.panelId);
+  const icon  = $('.ing-icon', btn);
+  const label = $('.ing-label', btn);
+  const isOpen = panel.classList.contains('open');
+
+  panel.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+  icon.textContent  = isOpen ? '+' : '\u00D7';
+  label.textContent = isOpen ? (btn.dataset.openLabel || 'Show Ingredients')
+                              : 'Hide Ingredients';
+}
+
+// ── EP Factory picker ─────────────────────────────────────────────────────────
+const pickerState = { flavor: null, choc: null, size: null };
+
+function renderFlavorGrid(container) {
+  EP_FLAVORS.forEach(f => {
+    const btn = el('button', { class: 'flavor-btn', 'data-flavor': f.label });
+    btn.innerHTML = `<span class="ficon">${f.icon}</span>${f.label}`;
+    btn.onclick = () => {
+      $$('.flavor-btn', container).forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      pickerState.flavor = f.label;
+      updateSummary();
+    };
+    container.append(btn);
+  });
+}
+
+function renderChocGrid(container) {
+  EP_COATINGS.forEach(c => {
+    const btn = el('button', { class: 'choc-btn', 'data-choc': c.value });
+    btn.innerHTML = `<span class="dot" style="${c.dotStyle}"></span>${c.label}`;
+    btn.onclick = () => {
+      $$('.choc-btn', container).forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      pickerState.choc = c.value;
+      updateSummary();
+    };
+    container.append(btn);
+  });
+}
+
+function renderSizeOptions(container) {
+  EP_SIZES.forEach(s => {
+    const btn = el('button', { class: 'size-btn', 'data-size': s });
+    btn.textContent = s;
+    btn.onclick = () => {
+      $$('.size-btn', container).forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      pickerState.size = s;
+      updateSummary();
+    };
+    container.append(btn);
+  });
+}
+
+function updateSummary() {
+  const box      = document.getElementById('summaryBox');
+  const titleEl  = document.getElementById('summaryTitle');
+  const descEl   = document.getElementById('summaryDesc');
+  const ctaEmail = document.getElementById('ctaEmail');
+  const { flavor, choc, size } = pickerState;
+  const all = flavor && choc && size;
+
+  if (!flavor && !choc && !size) { box.classList.remove('visible'); return; }
+  box.classList.add('visible');
+
+  const f = flavor || '(not selected)';
+  const c = choc   || '(not selected)';
+  const s = size   || '(not selected)';
+
+  titleEl.textContent = `${f} - ${c}`;
+  descEl.textContent  = `Size: ${s} - ${all ? 'Ready to enquire! Hit Contact below.' : 'Complete your selections to get a quote.'}`;
+
+  if (all) {
+    const subj = encodeURIComponent(`Custom Bar Enquiry - ${f}`);
+    const body = encodeURIComponent(
+      `Hi Lukas,\n\nI would like to enquire about a custom bar order:\n\n` +
+      `  Filling: ${f}\n  Chocolate coating: ${c}\n  Size / format: ${s}\n\n` +
+      `Could you please provide information on minimum order quantities and lead times?\n\n` +
+      `Looking forward to hearing from you,\n[Your name]`
+    );
+    ctaEmail.href = `mailto:${CONTACT.email}?subject=${subj}&body=${body}`;
+    ctaEmail.style.opacity = '1';
+    ctaEmail.style.pointerEvents = 'auto';
+  } else {
+    ctaEmail.href = '#';
+    ctaEmail.style.opacity = '0.45';
+    ctaEmail.style.pointerEvents = 'none';
+  }
+}
+
+// ── Pricing tables ────────────────────────────────────────────────────────────
+function renderPriceCard(title, rows, container) {
+  const card = el('div', { class: 'price-card' });
+  card.append(el('h5', {}, title));
+  rows.forEach(r => {
+    const row = el('div', { class: 'price-row' });
+    row.append(el('span', {}, r.label));
+    row.append(el('strong', {}, r.price));
+    card.append(row);
+  });
+  container.append(card);
+}
+
+// ── Mobile nav ────────────────────────────────────────────────────────────────
+function initNav() {
+  const navLinks = document.getElementById('navLinks');
+  const hamburger = document.getElementById('navHamburger');
+
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('mobile-open');
+    hamburger.classList.toggle('open');
+  });
+
+  // Close on link click
+  $$('a', navLinks).forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('mobile-open');
+      hamburger.classList.remove('open');
+    });
+  });
+
+  // Close on outside click
+  document.addEventListener('click', e => {
+    if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+      navLinks.classList.remove('mobile-open');
+      hamburger.classList.remove('open');
+    }
+  });
+}
+
+// ── Main render ───────────────────────────────────────────────────────────────
+function renderAll() {
+  // Sveikeris
+  const sveikGrid = document.getElementById('sveikerisGrid');
+  SVEIKERIS.forEach(p => sveikGrid.append(renderBarCard(p)));
+
+  // Signature
+  const sigGrid = document.getElementById('signatureGrid');
+  SIGNATURE.forEach(p => sigGrid.append(renderBarCard(p)));
+
+  // Crunch bites
+  const crunchGrid = document.getElementById('crunchGrid');
+  CRUNCH_BITES.forEach(p => crunchGrid.append(renderPouchCard(p)));
+
+  // EP Factory picker
+  renderFlavorGrid(document.getElementById('flavorGrid'));
+  renderChocGrid(document.getElementById('chocGrid'));
+  renderSizeOptions(document.getElementById('sizeGrid'));
+
+  // Pricing
+  const pgrid = document.getElementById('pricingGrid');
+  renderPriceCard('Real Chocolate', PRICING.real, pgrid);
+  renderPriceCard('Compound Chocolate', PRICING.compound, pgrid);
+
+  // WhatsApp pre-fill on pvt label button
+  const waBtn = document.getElementById('pvtWa');
+  if (waBtn) {
+    waBtn.href = `https://wa.me/${CONTACT.wa}?text=${encodeURIComponent('Hi Lukas, I\'m interested in private label options for your chocolate bars.')}`;
+  }
+  const summaryWa = document.getElementById('summaryWa');
+  if (summaryWa) {
+    summaryWa.href = `https://wa.me/${CONTACT.wa}`;
+  }
+
+  // Nav
+  initNav();
+}
+
+document.addEventListener('DOMContentLoaded', renderAll);
