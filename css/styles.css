@@ -193,51 +193,44 @@ nav {
 
 /* ── 4. CERTIFICATIONS STRIP ──────────────────────────────────────────── */
 .cert-strip {
-  background: var(--warm-white);
-  border-bottom: 1px solid var(--border);
+  background: var(--dark-choc);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0;
-  padding: 0.9rem clamp(1rem, 5vw, 3rem);
+  padding: 0.75rem clamp(1rem, 5vw, 3rem);
   flex-wrap: wrap;
+  text-align: center;
 }
 .cert-item {
   display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  padding: 0.4rem 2rem;
-}
-.cert-icon {
-  font-size: 1.2rem;
-  flex-shrink: 0;
-}
-.cert-text {
-  display: flex;
   flex-direction: column;
-  line-height: 1.2;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.3rem 2.5rem;
 }
-.cert-text strong {
-  font-size: 0.78rem;
+.cert-item strong {
+  font-size: 0.75rem;
   font-weight: 700;
-  color: var(--cocoa);
-  letter-spacing: 0.01em;
+  color: #fff;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
 }
-.cert-text span {
-  font-size: 0.68rem;
-  color: var(--text-muted);
+.cert-item span {
+  font-size: 0.62rem;
+  color: rgba(255,255,255,0.5);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
   font-weight: 500;
 }
 .cert-divider {
   width: 1px;
-  height: 28px;
-  background: var(--border);
+  height: 24px;
+  background: rgba(255,255,255,0.15);
   flex-shrink: 0;
 }
 @media (max-width: 600px) {
-  .cert-item { padding: 0.4rem 1rem; }
+  .cert-item { padding: 0.3rem 1.4rem; }
   .cert-divider { display: none; }
 }
 
@@ -389,7 +382,7 @@ section:nth-child(even) { background: var(--warm-white); }
 .badge.green    { background: var(--pistachio); }
 .badge.red      { background: var(--strawberry); }
 .badge.caramel  { background: var(--caramel); }
-.badge.clean    { background: transparent; color: #4a7c3f; border: 1px solid #4a7c3f; }
+.badge.clean    { background: #dff0d8; color: #2a6018; }
 
 .card h3 {
   font-family: "Playfair Display", serif;
