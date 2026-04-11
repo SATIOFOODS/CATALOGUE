@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Satio Foods - Premium natural chocolate bars. Sugar-free and classic options. Private label available.">
+  <title>Satio Foods - Premium Chocolate Bars</title>
+
+  <!-- Open Graph / Social sharing -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Satio Foods - Premium Chocolate Bars">
+  <meta property="og:description" content="Natural bars made from carefully selected ingredients, coated in sugar-free or classic chocolate. Private label available.">
+  <meta property="og:site_name"   content="Satio Foods">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:title"      content="Satio Foods - Premium Chocolate Bars">
+  <meta name="twitter:description" content="Natural bars made from carefully selected ingredients. Sugar-free &amp; classic options. Private label available.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ═══ NAV ═══════════════════════════════════════════════════════════════ -->
+  <nav>
+    <a class="nav-brand" href="#">SATIO<span>FOODS</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#sveikeris">Sveikeris</a></li>
+      <li><a href="#signature">Signature Bars</a></li>
+      <li><a href="#crunch-bites">Crunch Bites</a></li>
+      <li><a href="#epfactory">Custom Bars</a></li>
+    </ul>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ═══ HERO ══════════════════════════════════════════════════════════════ -->
+  <div class="hero">
+    <div class="hero-label">Premium Chocolate Bars</div>
+    <h1>Crafted with<br><em>Intention</em></h1>
+    <p>Natural bars made from carefully selected ingredients, coated in sugar-free or classic chocolate. Private label available.</p>
+    <div class="hero-pills">
+      <span class="hero-pill">Sugar-Free Options</span>
+      <span class="hero-pill">Private Label Ready</span>
+      <span class="hero-pill">Natural Ingredients</span>
+      <span class="hero-pill">UK Distribution</span>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 1 — SVEIKERIS ════════════════════════════════════════════ -->
+  <section id="sveikeris">
+    <div class="section-header">
+      <span class="section-tag">Section 01</span>
+      <h2>Sveikeris Bars</h2>
+      <p>Naturally sweetened with dates, enrobed in premium sugar-free chocolate - seven distinctive flavors to discover.</p>
+    </div>
+    <div class="product-grid" id="sveikerisGrid">
+      <!-- Populated by js/app.js from js/products.js -->
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 2 — SIGNATURE BARS ══════════════════════════════════════ -->
+  <section id="signature">
+    <div class="section-header">
+      <span class="section-tag">Section 02</span>
+      <h2>Signature Snack Bars</h2>
+      <p>Bold, trend-forward flavors - from viral Dubai-style pistachio to clean-label no-sugar snacking.</p>
+    </div>
+    <div class="product-grid-sig" id="signatureGrid">
+      <!-- Populated by js/app.js from js/products.js -->
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 3 — CRUNCH BITES ═════════════════════════════════════════ -->
+  <section id="crunch-bites">
+    <div class="section-header">
+      <span class="section-tag">Section 03</span>
+      <h2>Signature Crunch Bites</h2>
+      <p>The viral Dubai-style experience, engineered for sharing. Bite-sized indulgence in retail-ready, resealable pouches.</p>
+    </div>
+    <div class="product-grid-2" id="crunchGrid">
+      <!-- Populated by js/app.js from js/products.js -->
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 4 — EP FACTORY CUSTOM ═══════════════════════════════════ -->
+  <section id="epfactory">
+    <div class="section-header">
+      <span class="section-tag">Section 04</span>
+      <h2>EP Factory Custom Bars</h2>
+      <p>Build your perfect bar - choose any filling and chocolate coating. Private label &amp; distribution available.</p>
+    </div>
+
+    <!-- Picker -->
+    <div class="picker-layout">
+      <div class="picker-box">
+        <h4>&#9312; Choose Your Filling</h4>
+        <div class="flavor-grid" id="flavorGrid">
+          <!-- Populated by js/app.js from js/products.js -->
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        <div class="picker-box">
+          <h4>&#9313; Choose Chocolate Coating</h4>
+          <div class="choc-options" id="chocGrid">
+            <!-- Populated by js/app.js from js/products.js -->
+          </div>
+        </div>
+        <div class="picker-box">
+          <h4>&#9314; Choose Bar Size</h4>
+          <div class="size-options" id="sizeGrid">
+            <!-- Populated by js/app.js from js/products.js -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary + CTA (visible after selections) -->
+    <div class="summary-box" id="summaryBox">
+      <div class="summary-icon" id="summaryIcon">&#127851;</div>
+      <div class="summary-text">
+        <h4 id="summaryTitle">Your Custom Bar</h4>
+        <p id="summaryDesc">Complete your selections above.</p>
+        <div class="summary-cta">
+          <a id="ctaEmail" href="#" class="btn-cta dark" style="opacity:0.45;pointer-events:none">
+            &#9993; Contact via Email
+          </a>
+          <a id="summaryWa" href="#" class="btn-cta green" target="_blank">
+            &#128172; WhatsApp Us
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chocolate Selection Guide -->
+    <div class="pricing-section">
+      <h3>Chocolate Selection Guide</h3>
+      <div class="choc-guide">
+        <div class="guide-card real">
+          <h4>Real Chocolate</h4>
+          <div class="guide-row"><span class="bullet"></span><span>100% cocoa butter</span></div>
+          <div class="guide-row"><span class="bullet"></span><span>Requires tempering</span></div>
+          <div class="guide-row"><span class="bullet"></span><span>Melting point: 34-36&deg;C</span></div>
+          <div class="guide-row"><span class="bullet"></span><span>Intense cocoa taste</span></div>
+          <div class="guide-row"><span class="bullet"></span><span>Premium positioning</span></div>
+        </div>
+        <div class="guide-card compound">
+          <h4>Compound Chocolate</h4>
+          <div class="guide-row"><span class="bullet"></span><span>Vegetable-based fats (CBS/CBE)</span></div>
+          <div class="guide-row"><span class="bullet"></span><span>No tempering required</span></div>
+          <div class="guide-row"><span class="bullet"></span><span>Heat-stable, extended shelf life</span></div>
+          <div class="guide-row"><span class="bullet"></span><span>Cost-efficient production</span></div>
+          <div class="guide-row"><span class="bullet"></span><span>Great for retail scalability</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing -->
+    <div class="pricing-section">
+      <h3>Pricing Options</h3>
+      <div class="pricing-grid" id="pricingGrid">
+        <!-- Populated by js/app.js from js/products.js -->
+      </div>
+    </div>
+
+    <!-- Private label CTA -->
+    <div class="pvt-label">
+      <div class="pvt-icon">&#127991;</div>
+      <div class="pvt-label-text">
+        <h4>Private Label &amp; Brand Distribution Available</h4>
+        <p>Custom packaging, your brand, our quality. Available in 15g, 25g and 50g. Get in touch and we'll make it happen.</p>
+        <div class="pvt-actions">
+          <a href="mailto:lukas@ep-factory.com?subject=Private%20Label%20Enquiry&body=Hi%20Lukas%2C%0A%0AI%20am%20interested%20in%20discussing%20private%20label%20options%20for%20your%20chocolate%20bars.%0A%0ACompany%3A%20%0AProduct%20interest%3A%20%0AQuantity%3A%20%0A%0ALooking%20forward%20to%20hearing%20from%20you."
+             class="btn-cta dark">
+            &#9993; lukas@ep-factory.com
+          </a>
+          <a id="pvtWa" href="#" class="btn-cta green" target="_blank">
+            &#128172; WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ════════════════════════════════════════════════════════════ -->
+  <footer>
+    <p>&copy; 2025 Satio Foods &middot;
+       <a href="https://ep-factory.com" target="_blank">ep-factory.com</a>
+       &middot; Natural bars, crafted with care.
+    </p>
+  </footer>
+
+  <!-- Back to top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">&#8679;</button>
+
+  <!-- Scripts — order matters: images data → product data → app logic -->
+  <script src="assets/images.js" defer></script>
+  <script src="js/products.js" defer></script>
+  <script src="js/app.js" defer></script>
+
+</body>
+</html>
