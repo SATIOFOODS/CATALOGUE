@@ -7,7 +7,7 @@ const SVEIKERIS = [
   {
     imgKey: 'sveik_protein_almond',
     alt: 'Sveikeris Protein Almond',
-    badges: [{ text: '50g' }, { text: 'Sugar-Free', cls: 'caramel' }, { text: 'Protein', cls: 'caramel' }],
+    badges: [{ text: '50g' }, { text: 'Sugar-Free', cls: 'caramel' }, { text: 'Protein', cls: 'caramel' }, { text: 'No GMO', cls: 'clean' }, { text: 'No Palm Oil', cls: 'clean' }],
     title: 'Sveikeris Protein Almond',
     desc: 'A soft coconut and almond bar naturally sweetened with dates, coated in rich sugar-free chocolate.',
     btnLabel: 'Show Ingredients',
@@ -16,7 +16,7 @@ const SVEIKERIS = [
   {
     imgKey: 'sveik_double_choco',
     alt: 'Sveikeris Double Choco',
-    badges: [{ text: '50g' }, { text: 'Vegan' }],
+    badges: [{ text: '50g' }, { text: 'Vegan' }, { text: 'No GMO', cls: 'clean' }, { text: 'No Palm Oil', cls: 'clean' }],
     title: 'Sveikeris Double Choco',
     desc: 'A double chocolate bar with peanut and coconut, naturally sweetened with dates, enrobed in rich chocolate with a delicate crispy crunch.',
     btnLabel: 'Show Ingredients',
@@ -25,7 +25,7 @@ const SVEIKERIS = [
   {
     imgKey: 'sveik_coconut_strawberry',
     alt: 'Sveikeris Coconut Strawberry',
-    badges: [{ text: '50g' }, { text: 'Strawberry', cls: 'red' }, { text: 'Sugar-Free', cls: 'caramel' }],
+    badges: [{ text: '50g' }, { text: 'Strawberry', cls: 'red' }, { text: 'Sugar-Free', cls: 'caramel' }, { text: 'No GMO', cls: 'clean' }, { text: 'No Palm Oil', cls: 'clean' }],
     title: 'Sveikeris Coconut Strawberry',
     desc: 'A strawberry and coconut bar with natural date sweetness, enrobed in sugar-free white chocolate with a light crispy texture from rice crunch and freeze-dried berries.',
     btnLabel: 'Show Ingredients',
@@ -43,7 +43,7 @@ const SVEIKERIS = [
   {
     imgKey: 'sveik_dark_cocoa_crisp',
     alt: 'Sveikeris Dark Choco Cocoa Crisp',
-    badges: [{ text: '50g' }, { text: 'Sugar-Free', cls: 'caramel' }],
+    badges: [{ text: '50g' }, { text: 'Sugar-Free', cls: 'caramel' }, { text: 'No GMO', cls: 'clean' }, { text: 'No Palm Oil', cls: 'clean' }],
     title: 'Sveikeris Dark Choco Cocoa Crisp',
     desc: 'A crispy cocoa bar with peanut and coconut, naturally sweetened with dates and enrobed in sugar-free dark chocolate.',
     btnLabel: 'Show Ingredients',
@@ -52,7 +52,7 @@ const SVEIKERIS = [
   {
     imgKey: 'sveik_white_cocoa_crisp',
     alt: 'Sveikeris White Choco Cocoa Crisp',
-    badges: [{ text: '50g' }, { text: 'Sugar-Free', cls: 'caramel' }],
+    badges: [{ text: '50g' }, { text: 'Sugar-Free', cls: 'caramel' }, { text: 'No GMO', cls: 'clean' }, { text: 'No Palm Oil', cls: 'clean' }],
     title: 'Sveikeris White Choco Cocoa Crisp',
     desc: 'A crispy cocoa bar with peanut and coconut, naturally sweetened with dates and enrobed in sugar-free white chocolate.',
     btnLabel: 'Show Ingredients',

@@ -191,7 +191,57 @@ nav {
   border-radius: 100px;
 }
 
-/* ── 4. SECTIONS & LAYOUT ─────────────────────────────────────────────── */
+/* ── 4. CERTIFICATIONS STRIP ──────────────────────────────────────────── */
+.cert-strip {
+  background: var(--warm-white);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 0.9rem clamp(1rem, 5vw, 3rem);
+  flex-wrap: wrap;
+}
+.cert-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.4rem 2rem;
+}
+.cert-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.cert-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.cert-text strong {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--cocoa);
+  letter-spacing: 0.01em;
+}
+.cert-text span {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+.cert-divider {
+  width: 1px;
+  height: 28px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+@media (max-width: 600px) {
+  .cert-item { padding: 0.4rem 1rem; }
+  .cert-divider { display: none; }
+}
+
+/* ── 5. SECTIONS & LAYOUT (kept as §5 — cert strip is §4) ────────────── */
 section { padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 5vw, 4rem); }
 section:nth-child(even) { background: var(--warm-white); }
 
@@ -339,6 +389,7 @@ section:nth-child(even) { background: var(--warm-white); }
 .badge.green    { background: var(--pistachio); }
 .badge.red      { background: var(--strawberry); }
 .badge.caramel  { background: var(--caramel); }
+.badge.clean    { background: transparent; color: #4a7c3f; border: 1px solid #4a7c3f; }
 
 .card h3 {
   font-family: "Playfair Display", serif;
