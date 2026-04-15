@@ -190,6 +190,11 @@ nav {
   padding: 0.35em 0.9em;
   border-radius: 100px;
 }
+.hero-pill.satio-pill {
+  background: rgba(212,168,67,0.15);
+  border-color: rgba(212,168,67,0.5);
+  color: var(--gold);
+}
 
 /* ── 4. CERTIFICATIONS STRIP ──────────────────────────────────────────── */
 .cert-strip {
@@ -287,12 +292,13 @@ section:nth-child(even) { background: var(--warm-white); }
 
 /* ── 5. PRODUCT GRIDS ─────────────────────────────────────────────────── */
 
-/* Sveikeris - auto-fill */
+/* Sveikeris - auto-fill, centred */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 300px));
   gap: 1.5rem;
   align-items: start;
+  justify-content: center;
 }
 
 /* Signature bars - 3 centred columns */
@@ -442,20 +448,7 @@ section:nth-child(even) { background: var(--warm-white); }
   margin-top: auto;
 }
 .ing-toggle:hover { color: var(--cocoa); }
-
-.ing-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 18px;
-  height: 18px;
-  border: 1.5px solid currentColor;
-  border-radius: 50%;
-  font-size: 0.85rem;
-  transition: transform 0.25s;
-  flex-shrink: 0;
-}
-.ing-toggle.open .ing-icon { transform: rotate(45deg); }
+.ing-toggle.open  { color: var(--cocoa); text-decoration: underline; text-underline-offset: 3px; }
 
 .ing-panel {
   max-height: 0;
@@ -694,7 +687,7 @@ section:nth-child(even) { background: var(--warm-white); }
   margin-bottom: 1.2rem;
 }
 
-.pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 .price-card {
   background: rgba(255,255,255,0.6);
   border: 1px solid rgba(59,35,20,0.1);
@@ -855,5 +848,5 @@ footer a { color: var(--gold); text-decoration: none; }
 @media (max-width: 600px) {
   .product-grid-sig { grid-template-columns: 1fr; }
   .choc-guide       { grid-template-columns: 1fr; }
-  .pricing-grid     { grid-template-columns: 1fr; }
+  .pricing-grid     { grid-template-columns: 1fr 1fr; }
 }
