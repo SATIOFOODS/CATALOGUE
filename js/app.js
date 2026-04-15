@@ -309,13 +309,17 @@ function initNav() {
 function renderAll() {
   // Sveikeris
   const sveikGrid = document.getElementById('sveikerisGrid');
+  let subGrid = null;
   SVEIKERIS.forEach(p => {
     if (p.group) {
+      const groupWrap = el('div', { class: 'product-group' });
       const lbl = el('div', { class: 'product-group-label' });
       lbl.textContent = p.group;
-      sveikGrid.append(lbl);
+      subGrid = el('div', { class: 'product-subgrid' });
+      groupWrap.append(lbl, subGrid);
+      sveikGrid.append(groupWrap);
     }
-    sveikGrid.append(renderBarCard(p));
+    subGrid.append(renderBarCard(p));
   });
 
   // Signature

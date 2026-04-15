@@ -292,13 +292,18 @@ section:nth-child(even) { background: var(--warm-white); }
 
 /* ── 5. PRODUCT GRIDS ─────────────────────────────────────────────────── */
 
-/* Sveikeris - auto-fill, centred */
+/* Sveikeris - group wrapper stack */
 .product-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.product-subgrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 300px));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 300px));
   gap: 1.5rem;
-  align-items: start;
   justify-content: center;
+  align-items: start;
 }
 
 /* Signature bars - 3 centred columns */
