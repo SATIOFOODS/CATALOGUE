@@ -100,7 +100,7 @@ function renderPouchCard(product) {
 
   // Toggle button
   const icon  = el('span', { class: 'ing-icon' }, '+');
-  const label = el('span', { class: 'ing-label' }, 'Show Details');
+  const label = el('span', { class: 'ing-label' }, 'View Product Details');
   const btn   = el('button', { class: 'ing-toggle', 'data-panel-id': panelId });
   btn.onclick = () => toggleIng(btn);
   btn.append(icon, label);
@@ -116,7 +116,7 @@ function renderPouchCard(product) {
     class: 'ing-wholesale-cta',
     href: `https://wa.me/${CONTACT.wa}?text=${encodeURIComponent(`Hi Lukas, I'd like to get wholesale specs for: ${product.alt}`)}`,
     target: '_blank',
-  }, '\uD83D\uDCCB Get Wholesale Specs for this Bag');
+  }, '\uD83D\uDCCB View Wholesale Specs');
 
   const panel = el('div', { class: 'ing-panel', id: panelId });
   panel.append(inner, ctaBtn);
@@ -136,8 +136,8 @@ function toggleIng(btn) {
   panel.classList.toggle('open', !isOpen);
   btn.classList.toggle('open', !isOpen);
   icon.textContent  = isOpen ? '+' : '\u00D7';
-  label.textContent = isOpen ? (btn.dataset.openLabel || 'Show Ingredients')
-                              : 'Hide Ingredients';
+  label.textContent = isOpen ? (btn.dataset.openLabel || 'View Product Details')
+                              : 'Hide Details';
 }
 
 // ── EP Factory picker ─────────────────────────────────────────────────────────

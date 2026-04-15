@@ -496,12 +496,7 @@ section:nth-child(even) { background: var(--warm-white); }
   border: 1px solid var(--border);
 }
 
-/* ── 8. CRUNCH BITES DARK SECTION ────────────────────────────────────── */
-#crunch-bites { background: var(--cocoa); }
-#crunch-bites .section-tag       { color: var(--gold); }
-#crunch-bites .section-header h2 { color: #fff; }
-#crunch-bites .section-header p  { color: rgba(255,255,255,0.6); }
-#crunch-bites .section-header::after { background: var(--gold); }
+/* ── 8. CRUNCH BITES SECTION ─────────────────────────────────────────── */
 
 .new-tag {
   display: inline-block;
