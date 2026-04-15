@@ -57,6 +57,7 @@ function renderBarCard(product) {
   const icon  = el('span', { class: 'ing-icon' }, '+');
   const label = el('span', { class: 'ing-label' }, product.btnLabel);
   const btn   = el('button', { class: 'ing-toggle', 'data-panel-id': panelId });
+  btn.dataset.openLabel = product.btnLabel;
   btn.onclick = () => toggleIng(btn);
   btn.append(icon, label);
   body.append(btn);
@@ -67,7 +68,7 @@ function renderBarCard(product) {
     class: 'ing-wholesale-cta',
     href: `https://wa.me/${CONTACT.wa}?text=${encodeURIComponent(`Hi Lukas, I'd like to get wholesale specs for: ${product.alt}`)}`,
     target: '_blank',
-  }, '\uD83D\uDCCB Get Wholesale Specs for this Bar');
+  }, '\uD83D\uDCCB View Wholesale Specs');
   const panel = el('div', { class: 'ing-panel', id: panelId });
   panel.append(inner, ctaBtn);
   body.append(panel);
@@ -102,6 +103,7 @@ function renderPouchCard(product) {
   const icon  = el('span', { class: 'ing-icon' }, '+');
   const label = el('span', { class: 'ing-label' }, 'View Product Details');
   const btn   = el('button', { class: 'ing-toggle', 'data-panel-id': panelId });
+  btn.dataset.openLabel = 'View Product Details';
   btn.onclick = () => toggleIng(btn);
   btn.append(icon, label);
   body.append(btn);
@@ -136,8 +138,7 @@ function toggleIng(btn) {
   panel.classList.toggle('open', !isOpen);
   btn.classList.toggle('open', !isOpen);
   icon.textContent  = isOpen ? '+' : '\u00D7';
-  label.textContent = isOpen ? (btn.dataset.openLabel || 'View Product Details')
-                              : 'Hide Details';
+  label.textContent = btn.dataset.openLabel || 'View Ingredients';
 }
 
 // ── EP Factory picker ─────────────────────────────────────────────────────────
