@@ -54,12 +54,11 @@ function renderBarCard(product) {
   body.append(el('p', { class: 'card-desc' }, product.desc));
 
   // Toggle button
-  const icon  = el('span', { class: 'ing-icon' }, '+');
   const label = el('span', { class: 'ing-label' }, product.btnLabel);
   const btn   = el('button', { class: 'ing-toggle', 'data-panel-id': panelId });
   btn.dataset.openLabel = product.btnLabel;
   btn.onclick = () => toggleIng(btn);
-  btn.append(icon, label);
+  btn.append(label);
   body.append(btn);
 
   // Panel
@@ -100,12 +99,11 @@ function renderPouchCard(product) {
   body.append(el('p', { class: 'card-desc', html: product.desc }));
 
   // Toggle button
-  const icon  = el('span', { class: 'ing-icon' }, '+');
-  const label = el('span', { class: 'ing-label' }, 'View Product Details');
+  const label = el('span', { class: 'ing-label' }, 'View Details');
   const btn   = el('button', { class: 'ing-toggle', 'data-panel-id': panelId });
-  btn.dataset.openLabel = 'View Product Details';
+  btn.dataset.openLabel = 'View Details';
   btn.onclick = () => toggleIng(btn);
-  btn.append(icon, label);
+  btn.append(label);
   body.append(btn);
 
   // Panel with bullets + CTA
@@ -137,8 +135,6 @@ function toggleIng(btn) {
 
   panel.classList.toggle('open', !isOpen);
   btn.classList.toggle('open', !isOpen);
-  icon.textContent  = isOpen ? '+' : '\u00D7';
-  label.textContent = btn.dataset.openLabel || 'View Ingredients';
 }
 
 // ── EP Factory picker ─────────────────────────────────────────────────────────
@@ -313,7 +309,14 @@ function initNav() {
 function renderAll() {
   // Sveikeris
   const sveikGrid = document.getElementById('sveikerisGrid');
-  SVEIKERIS.forEach(p => sveikGrid.append(renderBarCard(p)));
+  SVEIKERIS.forEach(p => {
+    if (p.group) {
+      const lbl = el('div', { class: 'product-group-label' });
+      lbl.textContent = p.group;
+      sveikGrid.append(lbl);
+    }
+    sveikGrid.append(renderBarCard(p));
+  });
 
   // Signature
   const sigGrid = document.getElementById('signatureGrid');
