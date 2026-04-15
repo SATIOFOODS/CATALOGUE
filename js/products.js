@@ -159,6 +159,10 @@ const EP_COATINGS = [
 const EP_SIZES = ['15g', '25g', '50g', '1kg Pick & Mix'];
 
 const PRICING = {
+  crunchBites: [
+    { label: '75g Pistachio (Pistachi-OH!)', price: '£1.30' },
+    { label: '75g Strawberry (Berry-OH!)',   price: '£1.10' },
+  ],
   real: [
     { label: '50g Pistachio',             price: '£0.94' },
     { label: '50g Other Flavors',         price: '£0.85' },

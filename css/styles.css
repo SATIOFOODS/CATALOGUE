@@ -230,7 +230,16 @@ nav {
   flex-shrink: 0;
 }
 @media (max-width: 600px) {
-  .cert-item { padding: 0.3rem 1.4rem; }
+  .cert-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 0;
+  }
+  .cert-item {
+    padding: 0.65rem 0.5rem;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
   .cert-divider { display: none; }
 }
 

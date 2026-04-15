@@ -329,6 +329,7 @@ function renderAll() {
 
   // Pricing
   const pgrid = document.getElementById('pricingGrid');
+  renderPriceCard('Crunch Bites', PRICING.crunchBites, pgrid);
   renderPriceCard('Real Chocolate', PRICING.real, pgrid);
   renderPriceCard('Compound Chocolate', PRICING.compound, pgrid);
 
