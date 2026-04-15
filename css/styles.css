@@ -512,11 +512,11 @@ section:nth-child(even) { background: var(--warm-white); }
 }
 
 .product-group-label {
-  grid-column: 1 / -1;
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  text-align: center;
   color: var(--caramel);
   padding: 1rem 0 0.4rem;
   border-bottom: 1px solid rgba(59,35,20,0.1);
