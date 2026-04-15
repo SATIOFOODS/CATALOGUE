@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// js/products.js  —  All product data in one place
+// js/products.js - All product data in one place
 // To add / edit a product: update the relevant array below and re-run renderAll()
 // ─────────────────────────────────────────────────────────────────────────────
 

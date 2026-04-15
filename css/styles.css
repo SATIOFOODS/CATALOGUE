@@ -496,7 +496,28 @@ section:nth-child(even) { background: var(--warm-white); }
   border: 1px solid var(--border);
 }
 
-/* ── 8. EP FACTORY LIGHT SECTION & PICKER ────────────────────────────── */
+/* ── 8. CRUNCH BITES DARK SECTION ────────────────────────────────────── */
+#crunch-bites { background: var(--cocoa); }
+#crunch-bites .section-tag       { color: var(--gold); }
+#crunch-bites .section-header h2 { color: #fff; }
+#crunch-bites .section-header p  { color: rgba(255,255,255,0.6); }
+#crunch-bites .section-header::after { background: var(--gold); }
+
+.new-tag {
+  display: inline-block;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 0.2em 0.5em;
+  vertical-align: middle;
+  margin-left: 0.4rem;
+  font-family: "DM Sans", sans-serif;
+}
+
+/* ── 9. EP FACTORY LIGHT SECTION & PICKER ────────────────────────────── */
 #epfactory { background: #C2E7EE; color: var(--cocoa); }
 #epfactory .section-tag { color: var(--caramel); }
 #epfactory .section-header h2 { color: var(--cocoa); }
