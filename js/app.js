@@ -106,11 +106,42 @@ function renderPouchCard(product) {
   btn.append(label);
   body.append(btn);
 
-  // Panel with bullets + CTA
+  // Panel with bullets + full product info + CTA
   const inner = el('div', { class: 'ing-inner' });
+
+  // Highlights
   const ul = el('ul', { class: 'card-bullets' });
   product.bullets.forEach(b => ul.append(el('li', {}, b)));
   inner.append(ul);
+
+  // Ingredients
+  if (product.ingredients) {
+    inner.append(el('p', { class: 'ing-section-head' }, 'Ingredients'));
+    inner.append(el('p', { class: 'ing-text', html: product.ingredients }));
+  }
+
+  // Allergen note
+  if (product.allergens) {
+    inner.append(el('p', { class: 'ing-allergen', html: product.allergens }));
+  }
+
+  // Nutrition table
+  if (product.nutrition) {
+    const n = product.nutrition;
+    inner.append(el('p', { class: 'ing-section-head' }, 'Nutrition (per 100g)'));
+    inner.insertAdjacentHTML('beforeend', `
+      <div class="nutri-table">
+        <div class="nutri-row"><span>Energy</span><span>${n.energy}</span></div>
+        <div class="nutri-row"><span>Fat</span><span>${n.fat}</span></div>
+        <div class="nutri-row nutri-sub"><span>of which saturates</span><span>${n.saturates}</span></div>
+        <div class="nutri-row"><span>Carbohydrate</span><span>${n.carbs}</span></div>
+        <div class="nutri-row nutri-sub"><span>of which sugars</span><span>${n.sugars}</span></div>
+        <div class="nutri-row"><span>Fibre</span><span>${n.fibre}</span></div>
+        <div class="nutri-row"><span>Protein</span><span>${n.protein}</span></div>
+        <div class="nutri-row"><span>Salt</span><span>${n.salt}</span></div>
+      </div>
+    `);
+  }
 
   const ctaBtn = el('a', {
     class: 'ing-wholesale-cta',
@@ -129,10 +160,13 @@ function renderPouchCard(product) {
 // ── Ingredient toggle ─────────────────────────────────────────────────────────
 function toggleIng(btn) {
   const panel = document.getElementById(btn.dataset.panelId);
-  const icon  = $('.ing-icon', btn);
-  const label = $('.ing-label', btn);
   const isOpen = panel.classList.contains('open');
 
+  if (!isOpen) {
+    panel.style.maxHeight = panel.scrollHeight + 'px';
+  } else {
+    panel.style.maxHeight = '0';
+  }
   panel.classList.toggle('open', !isOpen);
   btn.classList.toggle('open', !isOpen);
 }

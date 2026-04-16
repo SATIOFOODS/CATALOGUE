@@ -462,7 +462,7 @@ section:nth-child(even) { background: var(--warm-white); }
   opacity: 0;
   margin-top: 0;
 }
-.ing-panel.open { max-height: 600px; opacity: 1; margin-top: 0.75rem; }
+.ing-panel.open { opacity: 1; margin-top: 0.75rem; }
 
 .ing-wholesale-cta {
   display: flex;
@@ -493,6 +493,51 @@ section:nth-child(even) { background: var(--warm-white); }
   line-height: 1.6;
   border: 1px solid var(--border);
 }
+
+.ing-section-head {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cocoa);
+  margin: 0.85rem 0 0.35rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+.ing-section-head:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+
+.ing-text {
+  margin: 0 0 0.5rem;
+  line-height: 1.55;
+}
+.ing-text strong { color: var(--cocoa); font-weight: 600; }
+
+.ing-allergen {
+  font-style: italic;
+  margin: 0.4rem 0 0;
+  opacity: 0.85;
+}
+
+.ing-warning {
+  margin: 0.4rem 0 0;
+  color: #8a5a00;
+  font-size: 0.76rem;
+}
+
+/* Nutrition table */
+.nutri-table { margin-top: 0.15rem; }
+.nutri-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.2rem 0;
+  border-bottom: 1px solid rgba(59,35,20,0.07);
+  gap: 0.5rem;
+}
+.nutri-row:last-child { border-bottom: none; }
+.nutri-row span:first-child { flex: 1; }
+.nutri-row span:last-child  { font-weight: 600; color: var(--cocoa); white-space: nowrap; }
+.nutri-sub span:first-child { padding-left: 1em; opacity: 0.8; }
 
 /* ── 8. SECTION EXTRAS (shared tags, group labels, positioning) ─────── */
 .section-position {
