@@ -1,0 +1,5 @@
+# Generated output
+*.pdf
+
+# Raw image assets not for version control
+assets/images/extras/
