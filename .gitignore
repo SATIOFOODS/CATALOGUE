@@ -3,3 +3,4 @@
 
 # Raw image assets not for version control
 assets/images/extras/
+generate_catalogue.py
